@@ -1,4 +1,4 @@
-Template.postSubmit.events({
+“Template.postSubmit.events({
   'submit form': function(e) {
     e.preventDefault();
 
@@ -12,7 +12,12 @@ Template.postSubmit.events({
       if (error)
         return alert(error.reason);
 
-      Router.go('postPage', {_id: result._id});  
+    // show this result but route anyway
+      if (result.postExists)
+        alert('This link has already been posted');
+
+      Router.go('postPage', {_id: result._id}); 
+
     });
   }
 });
